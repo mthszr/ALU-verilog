@@ -4,9 +4,30 @@ module sete_segmentos (
 	output reg [0:6] unidades,
 );
 
-wire num_dez = num / 10;
-wire num_uni = num % 10;
+wire [3:0] num_dez = num / 10;
+wire [3:0] num_uni = num % 10;
 
-always @(*)
+always @(*) begin
+
+	case (num_dez)
+		0: dezenas = 7'b0000001;
+		1: dezenas = 7'b1001111;
+		2: dezenas = 7'b0010010;
+		default: dezenas = 7'b1111111;
+	endcase
+
+end
+
+//terminar
+always @(*) begin
+
+	case (num_uni)
+		0: unidades = 7'b0000001;
+		1: unidades = 7'b1001111;
+		2: unidades = 7'b0010010;
+		default: dezenas = 7'b1111111;
+	endcase
+
+end
 
 endmodule 
